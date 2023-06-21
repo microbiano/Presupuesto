@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Presupuestos.Models.Categoria>
+
+
+@{
+    ViewData["Title"] = "Categorias";
+}
+
+<h1>Tipos Categorias</h1>
+<h5>las categorias nos permiten saber en que gastamos el dinero, tambien de donde proviene nuestros ingresos</h5>
+
+<p>
+    <a asp-action="Crear" class="btn btn-primary mb-3">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Acciones
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>Tipo</th>
+        </tr>
+    </thead>
+    <tbody id="reordenable">
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <input type="hidden" value="@item.Id" class="ids" />
+                <a class=" btn btn-primary" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                <a class=" btn btn-danger" asp-action="Borrar" asp-route-id="@item.Id">Borrar</a>
+            </td>
+            <td>
+               @item.Nombre
+            </td>
+            <td>
+               @item.TipoOperacioId.ToString()
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

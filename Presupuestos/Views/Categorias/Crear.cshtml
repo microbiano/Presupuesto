@@ -1,0 +1,38 @@
+﻿@model Presupuestos.Models.Categoria
+
+@{
+    ViewData["Title"] = "Crear Categoria";
+}
+
+<h1>Crear Categoría</h1>
+<h4>
+    la Categoría nos permite indicar en qué estamos gastando nuestro,dinero
+    tabién, de donde provienen nuestros ingresos.
+</h4>
+<hr />
+
+<form asp-action="Crear">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Nombre" class="control-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TipoOperacioId" class="control-label"></label>
+        <select asp-for="TipoOperacioId" asp-items="Html.GetEnumSelectList<TipoOperacion>()" class="form-select">
+        </select>
+        <span asp-validation-for="TipoOperacioId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <a class="btn btn-secondary" asp-action="Index"> Cancelar</a>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
